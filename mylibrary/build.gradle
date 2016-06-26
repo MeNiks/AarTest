@@ -1,0 +1,67 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    makeAARVersioningAutoIncrement()
+    giveAARProperName()
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+}
+
+def giveAARProperName() {
+    android.libraryVariants.all { variant ->
+        variant.outputs.each { output ->
+            def outputFile = output.outputFile
+            if (outputFile != null && outputFile.name.endsWith('.aar')) {
+                def fileName = "${archivesBaseName}-" + android.defaultConfig.versionName + "-" + output.name + ".aar"
+                output.outputFile = new File(outputFile.parent, fileName)
+//                 def outputPathName = "E:\\some.aar"
+//                 output.outputFile = new File(outputPathName)
+            }
+        }
+    }
+}
+
+def makeAARVersioningAutoIncrement() {
+    def versionPropsFile = file('version.properties')
+    def runTasks = gradle.startParameter.taskNames
+    if (versionPropsFile.canRead() && ('assemble' in runTasks || 'assembleRelease' in runTasks || 'aR' in runTasks)) {
+        def Properties versionProps = new Properties()
+
+        versionProps.load(new FileInputStream(versionPropsFile))
+        def fileVersionCode = versionProps['VERSION_CODE'].toInteger()
+        def fileVersionName
+        if (fileVersionCode <= 10) {
+            fileVersionName = "1." + (fileVersionCode - 1);
+        } else if (fileVersionCode >= 20 && fileVersionCode % 10 == 0) {
+            fileVersionName = ((int) (fileVersionCode / 10)) + ".9";
+        } else {
+            fileVersionName = (1 + (int) (fileVersionCode / 10)) + "." + ((fileVersionCode % 10) - 1);
+        }
+        fileVersionCode++;
+
+        versionProps['VERSION_CODE'] = fileVersionCode.toString()
+
+        versionProps.store(versionPropsFile.newWriter(), null)
+
+        android.defaultConfig {
+
+            versionCode fileVersionCode
+            versionName fileVersionName
+            minSdkVersion 15
+            targetSdkVersion 23
+        }
+    } else {
+//        throw new GradleException("Could not read version.properties!")
+    }
+}
