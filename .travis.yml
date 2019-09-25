@@ -2,8 +2,8 @@
 //git update-index --chmod=+x gradlew
 
 language: android
-sudo : required
-jdk: oraclejdk8
+sudo: required
+dist: trusty 
 
 android:
   components:
