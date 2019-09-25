@@ -1,3 +1,6 @@
+//Run this while adding .yml 
+//git update-index --chmod=+x gradlew
+
 language: android
 sudo : required
 jdk: oraclejdk8
