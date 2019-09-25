@@ -6,14 +6,15 @@ android:
     - platform-tools
     - tools
 
-    - build-tools-27.0.3
+    - build-tools-23.0.3
 
-    - android-27
+    - android-23
 
     - extra-google-google_play_services
     - extra-google-m2repository
     - extra-android-m2repository
     - addon-google_apis-google-19
+    - addon-google_apis-google-23
 
 
 before_install:
