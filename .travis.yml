@@ -12,6 +12,10 @@ env:
     - EMULATOR_API=29
     - EMULATOR_ABI=armeabi-v7a
 
+branches:
+  only:
+    - master
+
 android:
   components:
     - platform-tools
