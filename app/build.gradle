@@ -1,14 +1,25 @@
-apply plugin: 'com.android.application'
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+}
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
     defaultConfig {
         applicationId "com.niks.aartest"
-        minSdkVersion 15
-        targetSdkVersion 23
+        minSdkVersion 16
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
     }
 
     makeApkVersioningAutoIncrement()
@@ -17,8 +28,9 @@ android {
 }
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:23.4.0'
-    compile(name: 'test_lib', ext: 'aar')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation(name: 'test_lib', ext: 'aar')
 }
 repositories {
     flatDir {
@@ -66,7 +78,7 @@ def giveApkProperName() {
             def outputFile = output.outputFile
             if (outputFile != null && outputFile.name.endsWith('.apk')) {
                 def fileName = "${archivesBaseName}-" + variant.versionName + "-" + output.name + ".apk"
-                output.outputFile = new File(outputFile.parent, fileName)
+                output.outputFileName = fileName
                 // def outputPathName = "E:\\apk_name.apk"
                 // output.outputFile = new File(outputPathName)
             }

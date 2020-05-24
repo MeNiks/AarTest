@@ -1,12 +1,16 @@
-apply plugin: 'com.android.library'
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+}
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
 
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 23
+        minSdkVersion 16
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
     }
@@ -24,7 +28,7 @@ def giveAARProperName() {
             def outputFile = output.outputFile
             if (outputFile != null && outputFile.name.endsWith('.aar')) {
                 def fileName = "${archivesBaseName}-" + android.defaultConfig.versionName + "-" + output.name + ".aar"
-                output.outputFile = new File(outputFile.parent, fileName)
+                output.outputFileName = fileName
 //                 def outputPathName = "E:\\some.aar"
 //                 output.outputFile = new File(outputPathName)
             }
