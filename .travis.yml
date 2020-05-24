@@ -9,16 +9,16 @@ android:
   components:
     - platform-tools
     - tools
-    - build-tools-23.0.3
-    - android-23
+    - build-tools-29.0.3
+    - android-29
     - extra-google-google_play_services
     - extra-google-m2repository
     - extra-android-m2repository
-    - addon-google_apis-google-23
+    - addon-google_apis-google-29
 
 
 before_install:
-  - yes | sdkmanager "platforms;android-23"
+  - yes | sdkmanager "platforms;android-29"
 
 script:
     - ./gradlew assembleDebug
