@@ -1,9 +1,7 @@
-#Run this while adding .yml
-#git update-index --chmod=+x gradlew
 language: android
 sudo: required
+#os: [linux]
 dist: trusty
-# dist: trusty or jdk: oraclejdk8
 
 env:
   global:
@@ -11,6 +9,11 @@ env:
     - ANDROID_BUILD_TOOLS_VERSION=29.0.3
     - EMULATOR_API=29
     - EMULATOR_ABI=armeabi-v7a
+
+branches:
+  only:
+    - master
+
 android:
   components:
     - platform-tools
