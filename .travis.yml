@@ -29,7 +29,7 @@ before_install:
 
 script:
   - android list targets
-  - ./gradlew assembleAndroidTest
+#  - ./gradlew assembleAndroidTest
   - export EMULATOR="system-images;android-$EMULATOR_API;$EMULATOR_TAG;$EMULATOR_ABI"
   - echo no | avdmanager create avd -n test -k "$EMULATOR" -f # Create emulator virtual device
   - emulator -avd test -no-window -no-accel -no-snapshot -camera-back emulated -camera-front emulated -memory 2048 -writable-system & # Launch
