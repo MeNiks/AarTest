@@ -39,17 +39,15 @@ before_install:
   - echo no | avdmanager create avd --force -n test -k "system-images;android-29;default;armeabi-v7a"
   - $ANDROID_HOME/emulator/emulator -avd test -no-audio -no-window &
 
-script:
-  - echo $ANDROID_HOME # We assume this is correctly set when setting path
-  - sdkmanager --list || true # Look at the packages
-  - avdmanager
-  - android list targets
-#  - ./gradlew assembleAndroidTest
-  - export EMULATOR="system-images;android-$EMULATOR_API;$EMULATOR_TAG;$EMULATOR_ABI"
-  - echo no | avdmanager create avd -n test -k "$EMULATOR" -f # Create emulator virtual device
-  - emulator -avd test -no-window -no-accel -no-snapshot -camera-back emulated -camera-front emulated -memory 2048 -writable-system & # Launch
+before_script:
   - android-wait-for-emulator
+  - adb shell settings put global window_animation_scale 0 &
+  - adb shell settings put global transition_animation_scale 0 &
+  - adb shell settings put global animator_duration_scale 0 &
   - adb shell input keyevent 82 &
+
+script:
+#  - ./gradlew assembleAndroidTest
 #  - ./gradlew assembleDebug
 
 deploy:
