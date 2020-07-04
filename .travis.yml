@@ -7,9 +7,6 @@ env:
   global:
     - ANDROID_API=29
     - ANDROID_BUILD_TOOLS_VERSION=29.0.3
-    - EMULATOR_API=29
-    - EMULATOR_ABI=x86
-    - EMULATOR_TAG=default # can be google_apis
     - PATH=$ANDROID_HOME:$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$PATH
 
 android:
@@ -24,7 +21,6 @@ android:
     - addon-google_apis-google-$ANDROID_API
     - extra-android-support
     - sys-img-armeabi-v7a-$ANDROID_API
-    - sys-img-armeabi-v7a-25
 
 
 before_install:
@@ -37,9 +33,9 @@ before_install:
   # Check system images list
   - sdkmanager --list
   # Install the system image.
-  - yes | sdkmanager "system-images;android-25;default;armeabi-v7a"
+  - yes | sdkmanager "system-images;android-29;google_apis_playstore;x86_64"
   # Create and start emulator for the script. Meant to race the install task.
-  - echo no | avdmanager create avd --force -n test -k "system-images;android-25;default;armeabi-v7a"
+  - echo no | avdmanager create avd --force -n test -k "system-images;android-29;google_apis_playstore;x86_64"
   - $ANDROID_HOME/emulator/emulator -avd test -no-audio -no-window &
 
 before_script:
