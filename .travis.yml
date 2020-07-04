@@ -8,7 +8,8 @@ env:
     - ANDROID_API=29
     - ANDROID_BUILD_TOOLS_VERSION=29.0.3
     - EMULATOR_API=29
-    - EMULATOR_ABI=armeabi-v7a
+    - EMULATOR_ABI=x86
+    - EMULATOR_TAG=default # can be google_apis
     - PATH=$ANDROID_HOME:$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$PATH
 
 android:
@@ -27,9 +28,12 @@ android:
 
 before_install:
   - yes | sdkmanager "platforms;android-$ANDROID_API"
+  - yes | sdkmanager "build-tools;$ANDROID_BUILD_TOOLS_VERSION"
 
 script:
   - echo $ANDROID_HOME # We assume this is correctly set when setting path
+  - sdkmanager --list || true # Look at the packages
+  - avdmanager
   - android list targets
 #  - ./gradlew assembleAndroidTest
   - export EMULATOR="system-images;android-$EMULATOR_API;$EMULATOR_TAG;$EMULATOR_ABI"
