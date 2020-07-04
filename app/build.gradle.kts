@@ -90,3 +90,9 @@ fun incrementVersionCode() {
 fun renameArtifact() {
     project.base.archivesBaseName = "${android.defaultConfig.name}-${android.defaultConfig.versionName}"
 }
+dependencies{
+    androidTestImplementation("androidx.test:runner:1.3.0-rc01")
+    androidTestImplementation("androidx.test:rules:1.3.0-rc01")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.3.0-rc01")
+    androidTestImplementation("androidx.test.ext:junit:1.1.1")
+}
