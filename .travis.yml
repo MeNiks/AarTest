@@ -24,6 +24,7 @@ android:
     - addon-google_apis-google-$ANDROID_API
     - extra-android-support
     - sys-img-armeabi-v7a-$ANDROID_API
+    - sys-img-armeabi-v7a-25
 
 
 before_install:
