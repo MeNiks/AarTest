@@ -21,7 +21,7 @@ android:
     - extra-android-m2repository
     - addon-google_apis-google-$ANDROID_API
     - extra-android-support
-    - sys-img-x86-android-$ANDROID_API
+    - sys-img-armeabi-v7a-$ANDROID_API
 
 
 before_install:
