@@ -28,6 +28,7 @@ before_install:
   - yes | sdkmanager "platforms;android-$ANDROID_API"
 
 script:
+  - android list targets
   - ./gradlew assembleAndroidTest
   - echo no | android create avd --force -n test -t $ANDROID_API --abi $EMULATOR_ABI
   - emulator -avd test -no-skin -no-audio -no-window &
