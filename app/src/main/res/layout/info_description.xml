@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="28dp"
+        android:autoLink="web"
+        android:gravity="center"
+        android:textColor="@color/title_color"
+        android:textSize="15sp"
+        tools:text="This here is a weekly dose of some of the best-curated talks and keynotes out there. I’m sure you already have your sources of regular podcasts and blogs; this series here is just a helping hand.
+
+You’ll find discussions on various topics here that stem from the common thread of being inspiring leaders.
+
+We hope you find these helpful. For any feedback, suggestions or questions, write to us at cse@mindtickle.com." />
+
+</LinearLayout>
